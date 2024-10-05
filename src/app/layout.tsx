@@ -62,7 +62,7 @@ export default function RootLayout({
   useEffect(() => {
     // Check authen when component mounts or route changes
     checkAuthen();
-  }, []);
+  });
 
   return (
     <html lang="en">
