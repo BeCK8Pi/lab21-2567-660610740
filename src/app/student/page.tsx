@@ -23,6 +23,7 @@ export default function StudentPage() {
   const [myEnrollments, setMyEnrollments] = useState<Course[] | null>(null);
   const [loadingMyEnrollments, setLoadingMyEnrollments] = useState(false);
 
+  const [loadingEnrolling, setLoadingEnrolling] = useState(false);
   const [loadingDropping, setLoadingDropping] = useState("");
   const [courseNo, setCourseNo] = useState("");
   const router = useRouter();
@@ -51,7 +52,7 @@ export default function StudentPage() {
 
   const callEnrollApi = async () => {
     try {
-      await axios.post(
+      const resp = await axios.post(
         "/api/enrollments",
         {
           courseNo,
@@ -116,7 +117,7 @@ export default function StudentPage() {
         <Title order={4}>My Course(s)</Title>
 
         {myEnrollments &&
-          myEnrollments.map((enroll) => (
+          myEnrollments.map((enroll: any) => (
             <Group my="xs" key={enroll.courseNo}>
               <Text>
                 {enroll.courseNo} - {enroll.course.title}
